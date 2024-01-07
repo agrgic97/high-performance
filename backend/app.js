@@ -3,11 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require("mongoose")
+const cors = require("cors");
+const mongoose = require("mongoose");
+require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/HighPerformance');
+mongoose.connect('mongodb://localhost/HighPerformance').then(r => console.log("Connected to HighPerformance"));
 
 const db = mongoose.connection;
 
@@ -21,12 +23,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
-const salesmanRoute = require("./routes/salesman-router")
-const recordRoute = require("./routes/record-router")
+const salesmanRouter = require("./routes/salesman-router")
+const recordRouter = require("./routes/record-router")
+const orangeHRMRouter = require("./routes/orange-hrm-router")
+const openCRXRouter = require("./routes/open-crx-router")
 
-app.use('/api/salesman', salesmanRoute)
-app.use('/api/record', recordRoute)
+app.use('/api/salesman', salesmanRouter)
+app.use('/api/record', recordRouter)
+app.use('/api/orange-hrm', orangeHRMRouter)
+app.use('/api/open-crx', openCRXRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
