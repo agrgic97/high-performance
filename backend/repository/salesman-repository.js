@@ -4,7 +4,7 @@ const findAllSalesmen = async () => {
     return Salesman.find()
 }
 
-const findSalesman = async (id) => {
+const findSalesmanById = async (id) => {
     return Salesman.findById(id)
 }
 
@@ -20,10 +20,15 @@ const deleteSalesman = async (id) => {
     return Salesman.deleteOne({ "_id": id })
 }
 
+const deleteAllSalesmen = async () => {
+    return Salesman.deleteMany({})
+}
+
 module.exports = {
     findAllSalesmen,
-    findSalesman,
+    findSalesmanById,
     createSalesman,
     updateSalesman,
-    deleteSalesman
+    deleteSalesman,
+    deleteAllSalesmen
 }

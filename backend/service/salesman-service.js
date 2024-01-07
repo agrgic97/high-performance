@@ -1,11 +1,25 @@
 const salesmanRepository = require("../repository/salesman-repository")
+const orangeHRMRepository = require("../repository/orange-hrm-repository")
 
 const getAllSalesmen = async () => {
     return await salesmanRepository.findAllSalesmen()
 }
 
-const getSalesman = async (id) => {
-    return await salesmanRepository.findSalesman(id)
+const getAllEmployeesFromHRM = async () => {
+    return await orangeHRMRepository.getEmployees()
+}
+
+const getAllSalesmenFromHRM = async ()  => {
+    const employees = await getAllEmployeesFromHRM()
+    return employees.filter((employee) => employee["unit"] === "Sales")
+}
+
+const getSalesmanFromHRMById = async (id) => {
+    return await orangeHRMRepository.getEmployee(id)
+}
+
+const getSalesmanById = async (id) => {
+    return await salesmanRepository.findSalesmanById(id)
 }
 
 const createSalesman = async (salesman) => {
@@ -20,10 +34,17 @@ const deleteSalesman = async (id) => {
     return await salesmanRepository.deleteSalesman(id)
 }
 
+const deleteAllSalesmen = async () => {
+    return await salesmanRepository.deleteAllSalesmen()
+}
+
 module.exports = {
     getAllSalesmen,
-    getSalesman,
+    getAllSalesmenFromHRM,
+    getSalesmanById,
+    getSalesmanFromHRMById,
     createSalesman,
     updateSalesman,
-    deleteSalesman
+    deleteSalesman,
+    deleteAllSalesmen
 }

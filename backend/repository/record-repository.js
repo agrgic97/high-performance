@@ -4,7 +4,7 @@ const findAllEvaluationRecords = async () => {
     return EvaluationRecord.find({})
 }
 
-const findEvaluationRecord = async (id) => {
+const findEvaluationRecordById = async (id) => {
     return EvaluationRecord.findById(id)
 }
 
@@ -23,7 +23,7 @@ const deleteEvaluationRecord = async (id) => {
 
 module.exports = {
     findAllEvaluationRecords,
-    findEvaluationRecord,
+    findEvaluationRecordById,
     createEvaluationRecord,
     updateEvaluationRecord,
     deleteEvaluationRecord

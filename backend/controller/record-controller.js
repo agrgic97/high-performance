@@ -4,7 +4,7 @@ const getAllRecords = async (req, res) => {
     res.json(await recordService.getAllRecords()).status(200)
 }
 
-const getRecord = async (req, res) => {
+const getRecordById = async (req, res) => {
     res.json(await recordService.getRecord(req.params.id)).status(200)
 }
 
@@ -22,7 +22,7 @@ const deleteRecord = async (req, res) => {
 
 module.exports = {
     getAllRecords,
-    getRecord,
+    getRecordById,
     createRecord,
     updateRecord,
     deleteRecord

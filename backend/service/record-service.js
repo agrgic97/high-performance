@@ -4,8 +4,8 @@ const getAllRecords = async () => {
     return await recordRepository.findAllEvaluationRecords()
 }
 
-const getRecord = async (id) => {
-    return await recordRepository.findEvaluationRecord(id)
+const getRecordById = async (id) => {
+    return await recordRepository.findEvaluationRecordById(id)
 }
 
 const createRecord = async (sid, record) => {
@@ -22,7 +22,7 @@ const deleteRecord = async (id) => {
 
 module.exports = {
     getAllRecords,
-    getRecord,
+    getRecordById,
     createRecord,
     updateRecord,
     deleteRecord
