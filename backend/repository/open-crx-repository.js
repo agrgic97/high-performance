@@ -16,7 +16,7 @@ const config = {
     auth: credentials,
 }
 
-const getAccounts = async (req, res) => {
+const  getAllAccounts = async () => {
     const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.account1/provider/CRX/segment/Standard/account`, config)
     if (response.data.error) {
         throw Error(response.data.error)
@@ -24,15 +24,15 @@ const getAccounts = async (req, res) => {
     return response.data.objects
 }
 
-const getAccount = async (req, res) => {
-    const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.account1/provider/CRX/segment/Standard/account/${req.params.id}`, config)
+const getAccountById = async (id) => {
+    const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.account1/provider/CRX/segment/Standard/account/${id}`, config)
     if (response.data.error) {
         throw Error(response.data.error)
     }
     return response.data
 }
 
-const getSalesOrders = async (req, res) => {
+const getAllSalesOrders = async () => {
     const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.contract1/provider/CRX/segment/Standard/salesOrder`, config)
     if (response.data.error) {
         throw Error(response.data.error)
@@ -40,8 +40,8 @@ const getSalesOrders = async (req, res) => {
     return response.data.objects
 }
 
-const getSalesOrder = async (req, res) => {
-    const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.contract1/provider/CRX/segment/Standard/salesOrder/${req.params.id}`, config)
+const getSalesOrderById = async (id) => {
+    const response = await axios.get(`${BASE_URL}/org.opencrx.kernel.contract1/provider/CRX/segment/Standard/salesOrder/${id}`, config)
     if (response.data.error) {
         throw Error(response.data.error)
     }
@@ -49,8 +49,8 @@ const getSalesOrder = async (req, res) => {
 }
 
 module.exports = {
-    getAccounts,
-    getAccount,
-    getSalesOrders,
-    getSalesOrder
+    getAllAccounts,
+    getAccountById,
+    getAllSalesOrders,
+    getSalesOrderById
 }

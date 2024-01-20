@@ -5,7 +5,7 @@ const getAllSalesmen = async (req, res) => {
 }
 
 const getSalesmanById = async (req, res) => {
-    res.json(await  salesmanService.getSalesmanFromHRMById(req.params.id))
+    res.json(await salesmanService.getSalesmanFromHRMById(req.params.id)).status(200)
 }
 
 module.exports =  {

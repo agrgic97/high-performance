@@ -5,11 +5,19 @@ const getAllRecords = async (req, res) => {
 }
 
 const getRecordById = async (req, res) => {
-    res.json(await recordService.getRecord(req.params.id)).status(200)
+    res.json(await recordService.getRecordById(req.params.id)).status(200)
 }
 
 const createRecord = async (req, res) => {
-    res.json(await recordService.createRecord(req.params.id, req.body)).status(200)
+    const sid = req.params.id
+    const year = req.body["year"]
+    const recordExists = await recordService.checkIfRecordExistsForYear(sid, year)
+
+    if (recordExists !== null) {
+        res.status(400).send(`This salesman already has a record for ${year}!`)
+    } else {
+        res.status(201).json(await recordService.createRecord(req.params.id, req.body))
+    }
 }
 
 const updateRecord = async (req, res) => {

@@ -1,4 +1,4 @@
-const Salesman = require("../model/Salesman")
+const Salesman = require("../schemas/SalesmanSchema")
 
 const findAllSalesmen = async () => {
     return Salesman.find()

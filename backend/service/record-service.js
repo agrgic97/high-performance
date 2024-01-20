@@ -16,6 +16,10 @@ const updateRecord = async (id, record) => {
     return await recordRepository.updateEvaluationRecord(id, record)
 }
 
+const checkIfRecordExistsForYear = async (sid, year) => {
+    return await recordRepository.existsEvaluationRecordForSalesmanWithYear(sid, year)
+}
+
 const deleteRecord = async (id) => {
     return await recordRepository.deleteEvaluationRecord(id)
 }
@@ -25,5 +29,6 @@ module.exports = {
     getRecordById,
     createRecord,
     updateRecord,
+    checkIfRecordExistsForYear,
     deleteRecord
 }

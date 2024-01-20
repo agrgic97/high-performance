@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/HighPerformance').then(r => console.log("Connected to HighPerformance"));
+mongoose.connect('mongodb://localhost/HighPerformance').then(() => console.log("Connected to HighPerformance"));
 
 const db = mongoose.connection;
 
@@ -29,11 +29,13 @@ const salesmanRouter = require("./routes/salesman-router")
 const recordRouter = require("./routes/record-router")
 const orangeHRMRouter = require("./routes/orange-hrm-router")
 const openCRXRouter = require("./routes/open-crx-router")
+const authRouter = require("./routes/auth-router")
 
 app.use('/api/salesman', salesmanRouter)
 app.use('/api/record', recordRouter)
 app.use('/api/orange-hrm', orangeHRMRouter)
 app.use('/api/open-crx', openCRXRouter)
+app.use('/api/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

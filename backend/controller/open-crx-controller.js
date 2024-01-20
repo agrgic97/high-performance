@@ -1,24 +1,28 @@
-const openCRXService = require("../repository/open-crx-repository")
+const salesmanService = require("../service/salesman-service")
+const ordersService = require("../service/orders-service")
 
-const getAccounts = async (req, res) => {
-    res.json(openCRXService.getAccounts()).status(200)
+const getAllAccounts = async (req, res) => {
+    res.json(await salesmanService.getAllAccountsFromCRX()).status(200)
 }
 
-const getAccount = async (req, res) => {
-    res.json(openCRXService.getAccount(req.params.id)).status(200)
+const getAccountById = async (req, res) => {
+    res.json(await salesmanService.getAccountFromCRXById(req.params.id)).status(200)
 }
 
-const getSalesOrders = async (req, res) => {
-    res.json(openCRXService.getSalesOrders()).status(200)
+const getAccountByName = async (req, res) => {
+    const body = req.body
+    const fullName = body["fullName"]
+    res.json(await salesmanService.getAccountFromCRXByFullName(fullName)).status(200)
 }
 
-const getSalesOrder = async (req, res) => {
-    res.json(openCRXService.getSalesOrder(req.params.id)).status(200)
+const getAllSalesOrdersByAccountId = async (req, res) => {
+    res.json(await ordersService.getAllSalesOrdersByAccountId(req.params.id)).status(200)
 }
+
 
 module.exports = {
-    getAccount,
-    getAccounts,
-    getSalesOrder,
-    getSalesOrders
+    getAccountById,
+    getAllAccounts,
+    getAccountByName,
+    getAllSalesOrdersByAccountId
 }
