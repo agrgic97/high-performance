@@ -15,6 +15,16 @@ const getAllSalesmenFromHRM = async ()  => {
     return employees.filter((employee) => employee["unit"] === "Sales")
 }
 
+const getAllSalesmenFormCRX = async () => {
+    const accounts = await getAllAccountsFromCRX()
+    return accounts.filter((account) => account["organization"] === "SmartHoover Ltd." && account["department"] === "Sales")
+}
+
+const getAccountIdFromSalesmanId = async (sid) => {
+    const salesmen = await getAllSalesmenFormCRX()
+    return salesmen.find(salesman => salesman["governmentId"].toString() === sid)
+}
+
 const getAllAccountsFromCRX = async () => {
     return await openCRXRepository.getAllAccounts()
 }
@@ -44,6 +54,10 @@ const updateSalesman = async (id, salesman) => {
     return await salesmanRepository.updateSalesman(id, salesman)
 }
 
+const updateBonusSalary = async (id, requestBody) => {
+    return await orangeHRMRepository.updateBonusSalaryForSalesman(id, requestBody)
+}
+
 const deleteSalesman = async (id) => {
     return await salesmanRepository.deleteSalesman(id)
 }
@@ -56,12 +70,15 @@ module.exports = {
     getAllSalesmen,
     getAllSalesmenFromHRM,
     getAllAccountsFromCRX,
+    getAllEmployeesFromHRM,
     getSalesmanById,
     getSalesmanFromHRMById,
     getAccountFromCRXById,
     getAccountFromCRXByFullName,
+    getAccountIdFromSalesmanId,
     createSalesman,
     updateSalesman,
+    updateBonusSalary,
     deleteSalesman,
     deleteAllSalesmen
 }

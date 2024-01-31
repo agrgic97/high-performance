@@ -4,10 +4,10 @@ class OrdersEvaluation {
     clientRanking;
     items;
     bonus;
-    constructor(nameOfProduct, client, clientRanking, items, bonus) {
+    constructor(nameOfProduct, client, clientRanting, items, bonus) {
         this.nameOfProduct = nameOfProduct;
         this.client = client;
-        this.clientRanking = clientRanking;
+        this.clientRanking = clientRanting;
         this.items = items;
         this.bonus = bonus;
 

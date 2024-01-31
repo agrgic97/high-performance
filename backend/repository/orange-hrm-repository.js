@@ -1,5 +1,6 @@
 const axios = require("axios")
 const qs = require("querystring")
+const {Error} = require("mongoose");
 
 const BASE_URL = process.env.ORANGE_HRM_BASE_URL
 const CLIENT_ID = process.env.ORANGE_HRM_CLIENT_ID
@@ -72,8 +73,31 @@ const getEmployees = async () => {
     return response.data.data
 }
 
+const updateBonusSalaryForSalesman = async (id, requestBody) => {
+    const accessToken = await getAccessToken()
+
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+        }
+    }
+
+    try {
+        const response = await axios.post(`${BASE_URL}/api/v1/employee/${id}/bonussalary`, requestBody, config)
+        return response.data.data
+    } catch (error) {
+        throw new Error(error)
+    }
+    // if (response.data.error) {
+    //     throw Error(response.data.error)
+    // }
+}
+
 module.exports = {
     getAccessToken,
     getEmployee,
-    getEmployees
+    getEmployees,
+    updateBonusSalaryForSalesman
 }

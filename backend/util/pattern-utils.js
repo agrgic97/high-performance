@@ -7,7 +7,15 @@ const extractAccountIdFromUrl = (url) => {
 }
 
 const extractSalesOrderIdFromUrl = (url) => {
-    const regex = "/salesOrder/([A-Z0-9]+)$/";
+    const regex = "/salesOrder/([A-Z0-9]+)";
+
+    const match = url.match(regex);
+
+    return (match && match[1]) ? match[1] : null;
+}
+
+const extractProductIdFromUrl = (url) => {
+    const regex = "/product/([A-Z0-9]+)";
 
     const match = url.match(regex);
 
@@ -16,5 +24,6 @@ const extractSalesOrderIdFromUrl = (url) => {
 
 module.exports = {
     extractAccountIdFromUrl,
-    extractSalesOrderIdFromUrl
+    extractSalesOrderIdFromUrl,
+    extractProductIdFromUrl
 }

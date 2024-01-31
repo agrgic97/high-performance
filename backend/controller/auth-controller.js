@@ -18,10 +18,10 @@ const loginUser = async (req, res) => {
 }
 
 const registerUser = async (req, res) => {
-    const { username, password, role } = req.body
+    const { username, password, employeeId, role } = req.body
 
     try {
-        const user = await authService.registerUser({ username, password, role })
+        const user = await authService.registerUser({ username, password, employeeId, role })
 
         res.status(201).json({ success: true, message: 'User is registered', data: user })
     } catch (error) {
