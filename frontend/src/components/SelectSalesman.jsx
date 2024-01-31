@@ -1,39 +1,39 @@
 import {useEffect, useState} from 'react';
 import Api from "../api/API.js";
 
-const SelectSalesman = ({handleEmployeeId}) => {
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
-    const [employees, setFetchedEmployees] = useState([]);
+const SelectSalesman = ({setSalesmanId, setSelectedYear}) => {
+    const [selectedSalesman, setSelectedSalesman] = useState(null);
+    const [salesmen, setFetchedSalesmen] = useState([]);
     const backendApi = new Api();
 
 
     useEffect(() => {
-        backendApi.getEmployees()
-            .then(response => setFetchedEmployees(response.data))
+        backendApi.getSalesmen()
+            .then(response => setFetchedSalesmen(response.data))
             .catch(error => console.error(error));
     }, []);
 
     const handleSelectChange = (e) => {
         const selectedId = e.target.value;
-        const selected = employees.find((employee) => employee["employeeId"] === selectedId);
-        setSelectedEmployee(selected);
+        const selected = salesmen.find(salesman => salesman["_id"].toString() === selectedId);
+        setSelectedSalesman(selected);
     };
 
     return (
         <div className="flex items-center space-x-4">
-            <label htmlFor="employeeSelect" className="text-gray-600">
+            <label htmlFor="salesmanSelect" className="text-gray-600">
                 Select Salesman:
             </label>
             <div className="relative">
                 <select
-                    id="employeeSelect"
+                    id="salesmanSelect"
                     onChange={handleSelectChange}
                     className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-blue-500"
                 >
                     <option value="">Select</option>
-                    {employees.map((employee) => (
-                        <option key={employee["employeeId"]} value={employee["employeeId"]}>
-                            {employee["fullName"]}
+                    {salesmen.map((salesman) => (
+                        <option key={salesman["_id"]} value={salesman["_id"]}>
+                            {`${salesman["firstname"]} ${salesman["lastname"]}`}
                         </option>
                     ))}
                 </select>
@@ -50,10 +50,13 @@ const SelectSalesman = ({handleEmployeeId}) => {
                     </svg>
                 </div>
             </div>
-            {selectedEmployee && (
+            {selectedSalesman && (
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => handleEmployeeId(selectedEmployee["employeeId"])}>
-                    {`Select ${selectedEmployee["fullName"]}`}
+                onClick={() => {
+                    setSalesmanId(selectedSalesman["_id"])
+                    setSelectedYear(null)
+                }}>
+                    {`Select ${selectedSalesman["firstname"]} ${selectedSalesman["lastname"]}`}
                 </button>
             )}
         </div>

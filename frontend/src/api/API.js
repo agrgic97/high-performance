@@ -3,12 +3,28 @@ import axios from "axios";
 class Api {
     backendUrl = import.meta.env.VITE_BACKEND_URL
 
-    getEmployees = () => {
-        return axios.get(`${this.backendUrl}/api/orange-hrm/salesmen`);
+    getSalesmen = () => {
+        return axios.get(`${this.backendUrl}/api/salesman`);
     }
 
-    getEmployee = (id) => {
-        return axios.get(`${this.backendUrl}/api/orange-hrm/employee/${id}`);
+    getSalesman = (id) => {
+        return axios.get(`${this.backendUrl}/api/salesman/${id}`);
+    }
+
+    getAvailableRecordYearsFromSalesman = (id) => {
+        return axios.get(`${this.backendUrl}/api/record/performance-evaluation/years/salesman/${id}`);
+    }
+
+    login = (requestBody) => {
+        return axios.post(`${this.backendUrl}/api/auth/login`, requestBody);
+    }
+
+    getOrdersEvaluationRecordsByFromSalesman = (id) => {
+        return axios.get(`${this.backendUrl}/api/record/orders-evaluation/${id}`);
+    }
+
+    getSocialPerformanceEvaluationRecordsByYearFromSalesman = (id, year) => {
+        return axios.get(`${this.backendUrl}/api/record/performance-evaluation/salesman/${id}/year/${year}`)
     }
 }
 
