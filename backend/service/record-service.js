@@ -6,7 +6,6 @@ const patternHelper = require("../util/pattern-utils");
 const {mapRatingToText} = require("../util/rating-mapper")
 const {calculateOrdersEvaluationBonus, calculatePerformanceEvaluationBonus} = require("../util/bonus-computation")
 const {extractAccountIdFromUrl} = require("../util/pattern-utils");
-require("../models/OrdersEvaluation")
 
 const getAllSocialPerformanceRecords = async () => {
     return await recordRepository.findAllSocialPerformanceEvaluations()
@@ -22,6 +21,10 @@ const getSocialPerformanceRecordBySalesmanIdAndYear = async (sid, year) => {
         ...evaluation._doc,
         bonus: calculatePerformanceEvaluationBonus(evaluation._doc.targetValue, evaluation._doc.actualValue)
     }))
+}
+
+const getRecordInformationBySalesmanIdAndYear = async (sid, year) => {
+    return await recordRepository.findRecordInformationByYearAndSalesmanId(sid, year)
 }
 
 const getSocialPerformanceRecordYearsBySalesmanId = async (sid) => {
@@ -72,12 +75,20 @@ const createSocialPerformanceRecord = async (sid, record) => {
     return await recordRepository.createSocialPerformanceEvaluation(sid, record)
 }
 
+const createRecordInformation = async (record) => {
+    return await recordRepository.createRecordInformation(record)
+}
+
 const updateSocialPerformanceRecord = async (id, record) => {
     return await recordRepository.updateSocialPerformanceEvaluation(id, record)
 }
 
 const checkIfSocialPerformanceRecordExistsForYear = async (sid, year) => {
     return await recordRepository.existsSocialPerformanceEvaluationForSalesmanWithYear(sid, year)
+}
+
+const checkIfRecordInformationExistsForYear = async (sid, year) => {
+    return await recordRepository.existsRecordInformationForSalesmanWithYear(sid, year)
 }
 
 const deleteSocialPerformanceRecord = async (id) => {
@@ -89,9 +100,12 @@ module.exports = {
     getSocialPerformanceRecordById,
     getSocialPerformanceRecordBySalesmanIdAndYear,
     getSocialPerformanceRecordYearsBySalesmanId,
+    getRecordInformationBySalesmanIdAndYear,
     getOrdersEvaluationsBySalesmanId,
+    createRecordInformation,
     createSocialPerformanceRecord,
     updateSocialPerformanceRecord,
     checkIfSocialPerformanceRecordExistsForYear,
+    checkIfRecordInformationExistsForYear,
     deleteSocialPerformanceRecord
 }
