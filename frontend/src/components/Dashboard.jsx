@@ -18,6 +18,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             }
+            {(user.role === "SALESMAN") && <EmployeeInfo salesmanId={user.employeeId} year={selectedYear} setSelectedYear={setSelectedYear}/>}
         </main>
     )
 }
