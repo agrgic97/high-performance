@@ -79,8 +79,8 @@ const createRecordInformation = async (record) => {
     return await recordRepository.createRecordInformation(record)
 }
 
-const updateSocialPerformanceRecord = async (id, record) => {
-    return await recordRepository.updateSocialPerformanceEvaluation(id, record)
+const updateRecordInformation = async (id, record) => {
+    return await recordRepository.updateRecordInformation(id, record)
 }
 
 const checkIfSocialPerformanceRecordExistsForYear = async (sid, year) => {
@@ -104,7 +104,7 @@ module.exports = {
     getOrdersEvaluationsBySalesmanId,
     createRecordInformation,
     createSocialPerformanceRecord,
-    updateSocialPerformanceRecord,
+    updateRecordInformation,
     checkIfSocialPerformanceRecordExistsForYear,
     checkIfRecordInformationExistsForYear,
     deleteSocialPerformanceRecord

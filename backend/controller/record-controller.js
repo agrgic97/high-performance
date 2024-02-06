@@ -50,8 +50,10 @@ const createRecordInformation = async (req, res) => {
     }
 }
 
-const updateRecord = async (req, res) => {
-    res.status(200).json(await recordService.updateSocialPerformanceRecord(req.params.id, req.body))
+const updateRecordInformation = async (req, res) => {
+    const response = await recordService.updateRecordInformation(req.params.id, req.body)
+    if (response === null) res.status(400).json({"success": false, "message": "Record ID does not exist."})
+    res.status(200).json({"success": true, "message": "Record successfully updated."})
 }
 
 const deleteRecord = async (req, res) => {
@@ -67,6 +69,6 @@ module.exports = {
     getOrdersEvaluationRecordsBySalesmanId,
     createSocialPerformanceRecord,
     createRecordInformation,
-    updateRecord,
+    updateRecordInformation,
     deleteRecord
 }

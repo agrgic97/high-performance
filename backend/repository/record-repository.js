@@ -40,8 +40,8 @@ const existsRecordInformationForSalesmanWithYear = async (sid, year) => {
     return RecordInformation.exists({"salesmanId": sid, "year": year})
 }
 
-const updateSocialPerformanceEvaluation = async (id, record) => {
-    return SocialPerformanceEvaluation.findOneAndUpdate({ "_id": id }, record)
+const updateRecordInformation = async (id, record) => {
+    return RecordInformation.findOneAndUpdate({ "_id": id }, record)
 }
 
 const deleteSocialPerformanceEvaluation = async (id) => {
@@ -58,6 +58,6 @@ module.exports = {
     createRecordInformation,
     existsSocialPerformanceEvaluationForSalesmanWithYear,
     existsRecordInformationForSalesmanWithYear,
-    updateSocialPerformanceEvaluation,
+    updateRecordInformation,
     deleteSocialPerformanceEvaluation
 }

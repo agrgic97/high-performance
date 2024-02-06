@@ -10,11 +10,11 @@ const schema = mongoose.Schema({
     year: { type: Number, required: true },
     remarks: String,
     hrSignature: {
-        signature: { type: Boolean, default: false },
+        signed: { type: Boolean, default: false },
         date: Date
     },
     ceoSignature: {
-        signature: { type: Boolean, default: false },
+        signed: { type: Boolean, default: false },
         date: Date
     },
     salesmanConfirmation: {

@@ -8,6 +8,6 @@ router.get("/performance-evaluation/years/salesman/:id", recordController.getPer
 router.get("/orders-evaluation/:id", recordController.getOrdersEvaluationRecordsBySalesmanId)
 router.post("/performance-evaluation/salesman/:id", recordController.createSocialPerformanceRecord)
 router.post("/record-information", recordController.createRecordInformation)
-router.patch("/:id", recordController.updateRecord)
+router.patch("/record-information/:id", recordController.updateRecordInformation)
 
 module.exports = router
