@@ -21,8 +21,8 @@ const SelectSalesman = ({setSalesmanId, setSelectedYear}) => {
 
     return (
         <div className="flex items-center space-x-4">
-            <label htmlFor="salesmanSelect" className="text-gray-600">
-                Select Salesman:
+            <label htmlFor="salesmanSelect">
+                Select Salesman
             </label>
             <div className="relative">
                 <select

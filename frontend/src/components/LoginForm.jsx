@@ -15,6 +15,7 @@ const LoginForm = ({ isAuthenticated, setIsAuthenticated, setUser }) => {
 
             if (response.data?.success) {
                 setIsAuthenticated(true);
+                sessionStorage.setItem("user", JSON.stringify(response.data?.user))
                 setUser(response.data?.user);
                 navigate("/dashboard");
             }

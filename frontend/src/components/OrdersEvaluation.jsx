@@ -29,7 +29,7 @@ const OrdersEvaluation = ({ year, salesmanId, setOrdersBonus }) => {
     if (ordersEvaluations && year) {
         return (
             <div className="mt-10">
-                <h1 className="font-bold my-3">Orders Evaluation:</h1>
+                <h1 className="font-bold text-2xl py-1 px-2 my-3 underline">Orders Evaluation</h1>
                 <div className="flex flex-col">
                     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

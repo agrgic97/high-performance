@@ -18,7 +18,12 @@ const Dashboard = () => {
                     </div>
                 </div>
             }
-            {(user.role === "SALESMAN") && <EmployeeInfo salesmanId={user.employeeId} year={selectedYear} setSelectedYear={setSelectedYear}/>}
+            {(user.role === "SALESMAN") &&
+            <div className="grid gap-4">
+                <div className="bg-white p-4 rounded shadow-md col-span-12">
+                    <EmployeeInfo salesmanId={user.employeeId} year={selectedYear} setSelectedYear={setSelectedYear}/>
+                </div>
+            </div>}
         </main>
     )
 }

@@ -43,7 +43,7 @@ const EmployeeInfo = ({salesmanId, year, setSelectedYear}) => {
                 </div>
             </div>
             <SelectYear salesmanId={salesmanId} setSelectedYear={setSelectedYear}/>
-            { salesmanId && year && <PerformanceRecord salesmanId={salesmanId} year={year}/> }
+            { salesmanId && year && <PerformanceRecord salesmanId={salesmanId} year={year} hrmId={salesman?.orangeHRMId} name={`${salesman?.firstname} ${salesman?.lastname}`}/> }
         </div>
     )
 }

@@ -12,6 +12,7 @@ const Header = ({setUser}) => {
                 {user && <button className="py-1 px-2 border-2 border-white rounded"
                 onClick={() => {
                     setUser(null);
+                    sessionStorage.removeItem("user")
                     window.location.reload();
                 }}>Logout</button>}
             </div>

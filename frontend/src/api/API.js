@@ -26,6 +26,18 @@ class Api {
     getSocialPerformanceEvaluationRecordsByYearFromSalesman = (id, year) => {
         return axios.get(`${this.backendUrl}/api/record/performance-evaluation/salesman/${id}/year/${year}`)
     }
+
+    getRecordInformationByYearFromSalesman = (id, year) => {
+        return axios.get(`${this.backendUrl}/api/record/record-information/salesman/${id}/year/${year}`)
+    }
+
+    updateRecordInformation = (id, record) => {
+        return axios.patch(`${this.backendUrl}/api/record/record-information/${id}`, record)
+    }
+
+    updateBonusSalary = (id, requestBody) => {
+        return axios.post(`${this.backendUrl}/api/salesman/${id}/bonus-salary`, requestBody)
+    }
 }
 
 export default Api

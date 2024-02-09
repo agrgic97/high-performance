@@ -28,7 +28,7 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus }) 
     if (socialPerformanceEvaluations && year) {
         return (
             <div className="mt-10 mb-5">
-                <h1 className="font-bold my-3">Social Performance Evaluation:</h1>
+                <h1 className="font-bold text-2xl py-1 px-2 my-3 underline">Social Performance Evaluation</h1>
                 <div className="flex flex-col">
                     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -76,7 +76,7 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus }) 
                     </div>
                 </div>
                 <div className="mt-4 py-2 px-3 bg-gray-50 rounded inline-block font-medium shadow">
-                    Total Bonus (Orders Evaluation): {totalBonus}
+                    Total Bonus (Social Performance Evaluation): {totalBonus}
                 </div>
             </div>
         );

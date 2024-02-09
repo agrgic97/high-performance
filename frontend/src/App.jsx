@@ -1,19 +1,25 @@
 import './App.css'
 import Dashboard from "./components/Dashboard.jsx";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import Header from "./components/Header.jsx";
-import Navbar from "./components/Navbar.jsx";
 import EditPerformanceRecord from "./components/EditPerformanceRecord.jsx";
 import BonusSalaries from "./components/BonusSalaries.jsx";
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [user, setUser] = useState(null)
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (!isAuthenticated && sessionStorage.getItem("user")) {
+            setIsAuthenticated(true);
+            setUser(JSON.parse(sessionStorage.getItem("user")));
+        }
+    }, []);
 
     return (
         <>
@@ -42,7 +48,7 @@ function App() {
                                     <EditPerformanceRecord/>
                                 </ProtectedRoute>
                             }
-                        end/>
+                        />
                         <Route
                             path="/bonus-salaries"
                             element={
