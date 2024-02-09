@@ -15,7 +15,7 @@ const PerformanceRecord = ({ year, salesmanId, hrmId, name }) => {
             </div>
             }
             <div className="my-6 py-2 px-3 bg-blue-900 rounded inline-block text-lg text-white font-medium shadow">Total Bonus (Orders Evaluation + Social Performance Evaluation): {ordersBonus + performanceBonus}</div>
-            {year && salesmanId && <RecordInformation year={year} salesmanId={salesmanId} bonus={ordersBonus + performanceBonus} hrmId={hrmId} name={name}/>}
+            {year && salesmanId && <RecordInformation year={year} salesmanId={salesmanId} ordersBonus={ordersBonus} performanceBonus={performanceBonus} hrmId={hrmId} name={name}/>}
         </div>
     );
 }

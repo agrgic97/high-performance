@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCheckCircle, faFilePen, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {formatDateTime} from "../utils/utils.js";
 
-const RecordInformation = ({salesmanId, year, bonus, hrmId, name}) => {
+const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrmId, name}) => {
     const [recordInformation, setRecordInformation] = useState(null);
     const [content, setContent] = useState("");
     const [hrChecked, setHrChecked] = useState(false);
@@ -25,7 +25,18 @@ const RecordInformation = ({salesmanId, year, bonus, hrmId, name}) => {
     const updateBonusSalary = () => {
         backendApi.updateBonusSalary(hrmId, {
             "year": year,
-            "value": bonus
+            "value": ordersBonus + performanceBonus
+        }).then(res => {
+            console.log(res.data)
+        }).catch(error => console.error(error))
+    }
+
+    const createBonusComputationEntry = () => {
+        backendApi.createBonusComputation({
+            "salesmanId": salesmanId,
+            "year": year,
+            "ordersEvaluationBonus": ordersBonus,
+            "socialPerformanceEvaluationBonus": performanceBonus
         }).then(res => {
             console.log(res.data)
         }).catch(error => console.error(error))
@@ -137,7 +148,6 @@ const RecordInformation = ({salesmanId, year, bonus, hrmId, name}) => {
                                                     signed: true, date: new Date()
                                                 }
                                             });
-
                                         }}
                                     >
                                         Save
@@ -166,6 +176,7 @@ const RecordInformation = ({salesmanId, year, bonus, hrmId, name}) => {
                                                         }
                                                     });
                                                     updateBonusSalary();
+                                                    createBonusComputationEntry();
                                                 }}>Confirm
                                             <FontAwesomeIcon className="ml-2" icon={faCheck}/>
                                         </button>

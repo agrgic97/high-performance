@@ -15,6 +15,10 @@ class Api {
         return axios.get(`${this.backendUrl}/api/record/performance-evaluation/years/salesman/${id}`);
     }
 
+    getBonusComputationsFromSalesman = (id) => {
+        return axios.get(`${this.backendUrl}/api/record/bonus-computation/${id}`);
+    }
+
     login = (requestBody) => {
         return axios.post(`${this.backendUrl}/api/auth/login`, requestBody);
     }
@@ -29,6 +33,10 @@ class Api {
 
     getRecordInformationByYearFromSalesman = (id, year) => {
         return axios.get(`${this.backendUrl}/api/record/record-information/salesman/${id}/year/${year}`)
+    }
+
+    createBonusComputation = (requestBody) => {
+        return axios.post(`${this.backendUrl}/api/record/bonus-computation`, requestBody);
     }
 
     updateRecordInformation = (id, record) => {
