@@ -4,6 +4,10 @@ const getAllPerformanceEvaluationRecords = async (req, res) => {
     res.status(200).json(await recordService.getAllSocialPerformanceRecords())
 }
 
+const getAllBonusComputationsBySalesmanId = async (req, res) => {
+    res.status(200).json(await recordService.getAllBonusComputationsBySalesmanId(req.params.id))
+}
+
 const getPerformanceEvaluationRecordById = async (req, res) => {
     res.status(200).json(await recordService.getSocialPerformanceRecordById(req.params.id))
 }
@@ -50,6 +54,10 @@ const createRecordInformation = async (req, res) => {
     }
 }
 
+const createBonusComputation = async (req, res) => {
+    res.status(201).json(await recordService.createBonusComputation(req.body))
+}
+
 const updateRecordInformation = async (req, res) => {
     const response = await recordService.updateRecordInformation(req.params.id, req.body)
     if (response === null) res.status(400).json({"success": false, "message": "Record ID does not exist."})
@@ -62,6 +70,7 @@ const deleteRecord = async (req, res) => {
 
 module.exports = {
     getAllPerformanceEvaluationRecords,
+    getAllBonusComputationsBySalesmanId,
     getPerformanceEvaluationRecordById,
     getPerformanceEvaluationRecordBySalesmanIdAndYear,
     getPerformanceEvaluationRecordYearsBySalesmanId,
@@ -69,6 +78,7 @@ module.exports = {
     getOrdersEvaluationRecordsBySalesmanId,
     createSocialPerformanceRecord,
     createRecordInformation,
+    createBonusComputation,
     updateRecordInformation,
     deleteRecord
 }

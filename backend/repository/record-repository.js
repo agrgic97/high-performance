@@ -1,5 +1,6 @@
 const SocialPerformanceEvaluation = require("../schemas/SocialPerformanceEvaluationSchema")
 const RecordInformation = require("../schemas/RecordInformationSchema")
+const BonusComputation = require("../schemas/BonusComputationSchema")
 const mongoose = require("mongoose");
 
 const findAllSocialPerformanceEvaluations = async () => {
@@ -22,6 +23,10 @@ const findRecordInformationByYearAndSalesmanId = async (sid, year) => {
     return RecordInformation.findOne({ "salesmanId": sid, "year": year })
 }
 
+const findAllBonusComputationsBySalesmanId = async (sid) => {
+    return BonusComputation.find({"salesmanId": sid})
+}
+
 const createSocialPerformanceEvaluation = async (sid, record) => {
     const query = { "_id": new mongoose.Types.ObjectId, "salesmanId": sid, ...record }
     return SocialPerformanceEvaluation.create(query)
@@ -30,6 +35,11 @@ const createSocialPerformanceEvaluation = async (sid, record) => {
 const createRecordInformation = async (record) => {
     const query = { "_id": new mongoose.Types.ObjectId, ...record }
     return RecordInformation.create(query)
+}
+
+const createBonusComputation = async (record) => {
+    const query = { "_id": new mongoose.Types.ObjectId, ...record }
+    return BonusComputation.create(query)
 }
 
 const existsSocialPerformanceEvaluationForSalesmanWithYear = async (sid, year) => {
@@ -52,10 +62,12 @@ module.exports = {
     findAllSocialPerformanceEvaluations,
     findSocialPerformanceEvaluationById,
     findAllSocialPerformanceEvaluationsBySalesmanId,
+    findAllBonusComputationsBySalesmanId,
     findSocialPerformanceEvaluationByYearAndSalesmanId,
     findRecordInformationByYearAndSalesmanId,
     createSocialPerformanceEvaluation,
     createRecordInformation,
+    createBonusComputation,
     existsSocialPerformanceEvaluationForSalesmanWithYear,
     existsRecordInformationForSalesmanWithYear,
     updateRecordInformation,
