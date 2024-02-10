@@ -11,5 +11,6 @@ router.post("/performance-evaluation/salesman/:id", recordController.createSocia
 router.post("/record-information", recordController.createRecordInformation)
 router.post("/bonus-computation", recordController.createBonusComputation)
 router.patch("/record-information/:id", recordController.updateRecordInformation)
+router.patch("/performance-evaluation/:id", recordController.updateSocialPerformanceEvaluation)
 
 module.exports = router

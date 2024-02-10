@@ -64,9 +64,12 @@ const updateRecordInformation = async (req, res) => {
     res.status(200).json({"success": true, "message": "Record successfully updated."})
 }
 
-const deleteRecord = async (req, res) => {
-    res.status(200).json(await recordService.deleteSocialPerformanceRecord(req.params.id))
+const updateSocialPerformanceEvaluation = async (req, res) => {
+    const response = await recordService.updateSocialPerformanceEvaluation(req.params.id, req.body)
+    if (response === null) res.status(400).json({"success": false, "message": "Record ID does not exist."})
+    res.status(200).json({"success": true, "message": "Record successfully updated."})
 }
+
 
 module.exports = {
     getAllPerformanceEvaluationRecords,
@@ -80,5 +83,5 @@ module.exports = {
     createRecordInformation,
     createBonusComputation,
     updateRecordInformation,
-    deleteRecord
+    updateSocialPerformanceEvaluation,
 }

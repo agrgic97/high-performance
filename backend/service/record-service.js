@@ -91,16 +91,16 @@ const updateRecordInformation = async (id, record) => {
     return await recordRepository.updateRecordInformation(id, record)
 }
 
+const updateSocialPerformanceEvaluation = async (id, record) => {
+    return await recordRepository.updateSocialPerformanceEvaluation(id, record)
+}
+
 const checkIfSocialPerformanceRecordExistsForYear = async (sid, year) => {
     return await recordRepository.existsSocialPerformanceEvaluationForSalesmanWithYear(sid, year)
 }
 
 const checkIfRecordInformationExistsForYear = async (sid, year) => {
     return await recordRepository.existsRecordInformationForSalesmanWithYear(sid, year)
-}
-
-const deleteSocialPerformanceRecord = async (id) => {
-    return await recordRepository.deleteSocialPerformanceEvaluation(id)
 }
 
 module.exports = {
@@ -115,7 +115,7 @@ module.exports = {
     createSocialPerformanceRecord,
     createBonusComputation,
     updateRecordInformation,
+    updateSocialPerformanceEvaluation,
     checkIfSocialPerformanceRecordExistsForYear,
     checkIfRecordInformationExistsForYear,
-    deleteSocialPerformanceRecord
 }
