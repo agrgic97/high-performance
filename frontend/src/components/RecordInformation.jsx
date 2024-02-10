@@ -100,12 +100,13 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
                                     <input
                                         className="ml-2"
                                         type="checkbox"
+                                        checked={hrChecked}
                                         onChange={() => setHrChecked((prevState) => !prevState)}
                                     />
                                 </label> : <p>Not signed yet!</p>}
                                 {(user.role === "HR") && (hrChecked) &&
                                     <button
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 p-1 rounded focus:outline-none focus:shadow-outline-blue"
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 px-1 rounded focus:outline-none focus:shadow-outline-blue"
                                         type="button"
                                         onClick={() => {
                                             handleDataUpdate({
@@ -113,7 +114,8 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
                                                 hrSignature: {
                                                     signed: true, date: new Date()
                                                 }
-                                            })
+                                            });
+                                            setHrChecked(false);
                                         }}
                                     >
                                         Save
@@ -134,13 +136,14 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
                                     <input
                                         className="ml-2"
                                         type="checkbox"
+                                        checked={ceoChecked}
                                         onChange={() => setCeoChecked((prevState) => !prevState)}
                                     />
                                 </label> : <p>Not signed yet!</p>}
                                 {(user.role === "CEO") && (ceoChecked) &&
                                     <button
                                         type="button"
-                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 p-1 rounded focus:outline-none focus:shadow-outline-blue"
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 px-1 rounded focus:outline-none focus:shadow-outline-blue"
                                         onClick={() => {
                                             handleDataUpdate({
                                                 ...recordInformation,
@@ -148,6 +151,7 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
                                                     signed: true, date: new Date()
                                                 }
                                             });
+                                            setCeoChecked(false);
                                         }}
                                     >
                                         Save
