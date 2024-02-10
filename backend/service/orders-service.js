@@ -1,5 +1,5 @@
 const openCRXRepository = require("../repository/open-crx-repository")
-const utils = require("../util/pattern-utils")
+const utils = require("../utils/pattern-utils")
 
 const getSalesOrderById = async (id) => {
     return await openCRXRepository.getSalesOrderById(id);

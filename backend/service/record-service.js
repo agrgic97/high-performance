@@ -2,10 +2,10 @@ const recordRepository = require("../repository/record-repository")
 const openCRXRepository = require("../repository/open-crx-repository")
 const ordersService = require("../service/orders-service")
 const salesmanService = require("../service/salesman-service")
-const patternHelper = require("../util/pattern-utils");
-const {mapRatingToText} = require("../util/rating-mapper")
-const {calculateOrdersEvaluationBonus, calculatePerformanceEvaluationBonus} = require("../util/bonus-computation")
-const {extractAccountIdFromUrl} = require("../util/pattern-utils");
+const patternHelper = require("../utils/pattern-utils");
+const {mapRatingToText} = require("../utils/rating-mapper")
+const {calculateOrdersEvaluationBonus, calculatePerformanceEvaluationBonus} = require("../utils/bonus-computation")
+const {extractAccountIdFromUrl} = require("../utils/pattern-utils");
 
 const getAllSocialPerformanceRecords = async () => {
     return await recordRepository.findAllSocialPerformanceEvaluations()
