@@ -21,10 +21,16 @@ const getSocialPerformanceRecordById = async (id) => {
 
 const getSocialPerformanceRecordBySalesmanIdAndYear = async (sid, year) => {
     const performanceRecord = await recordRepository.findSocialPerformanceEvaluationByYearAndSalesmanId(sid, year)
-    return performanceRecord["socialPerformanceEvaluations"].map(evaluation => ({
+    const socialPerformanceEvaluations =  performanceRecord["socialPerformanceEvaluations"].map(evaluation => ({
         ...evaluation._doc,
         bonus: calculatePerformanceEvaluationBonus(evaluation._doc.targetValue, evaluation._doc.actualValue)
     }))
+    return {
+        "_id": performanceRecord["_id"],
+        "salesmanId": performanceRecord["salesmanId"],
+        "year": performanceRecord["year"],
+        "socialPerformanceEvaluations": socialPerformanceEvaluations
+    }
 }
 
 const getRecordInformationBySalesmanIdAndYear = async (sid, year) => {

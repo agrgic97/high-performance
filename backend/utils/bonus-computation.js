@@ -9,13 +9,10 @@ const calculatePerformanceEvaluationBonus = (targetValue, actualValue) => {
     switch (difference) {
         case -4: bonus = 100; break;
         case -3: bonus = 90; break;
-        case -2: bonus = 80; break;
-        case -1: bonus = 70; break;
-        case 0: bonus = 60; break;
-        case 1: bonus = 50; break;
-        case 2: bonus = 40; break;
-        case 3: bonus = 30; break;
-        case 4: bonus = 20; break;
+        case -2: bonus = 75; break;
+        case -1: bonus = 65; break;
+        case 0: bonus = 50; break;
+        default: bonus = 0;
     }
 
     return bonus + actualValue * 10;
