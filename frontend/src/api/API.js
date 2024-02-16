@@ -39,12 +39,16 @@ class Api {
         return axios.post(`${this.backendUrl}/api/record/bonus-computation`, requestBody);
     }
 
-    updateRecordInformation = (id, record) => {
-        return axios.patch(`${this.backendUrl}/api/record/record-information/${id}`, record)
+    updateRecordInformation = (id, requestBody) => {
+        return axios.patch(`${this.backendUrl}/api/record/record-information/${id}`, requestBody)
     }
 
     updateBonusSalary = (id, requestBody) => {
         return axios.post(`${this.backendUrl}/api/salesman/${id}/bonus-salary`, requestBody)
+    }
+
+    updateSocialPerformanceEvaluation = (id, requestBody) => {
+        return axios.patch(`${this.backendUrl}/api/record/performance-evaluation/${id}`, requestBody)
     }
 }
 

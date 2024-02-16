@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faCheckCircle, faFilePen, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {formatDateTime} from "../utils/utils.js";
 
-const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrmId, name}) => {
+const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrmId, name, setHrSigned}) => {
     const [recordInformation, setRecordInformation] = useState(null);
     const [content, setContent] = useState("");
     const [hrChecked, setHrChecked] = useState(false);
@@ -47,6 +47,7 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
             .then(res => {
                 setRecordInformation(res?.data)
                 setContent(res?.data?.remarks)
+                setHrSigned(res?.data?.hrSignature.signed)
             })
             .catch(error => console.error(error))
     }
@@ -59,7 +60,7 @@ const RecordInformation = ({salesmanId, year, ordersBonus, performanceBonus, hrm
         <div>
             {recordInformation &&
                 <div>
-                    {(user.role === "CEO") ?
+                    {(user.role === "CEO" && !recordInformation.ceoSignature.signed) ?
                         <form className="mt-5">
                             <label className="font-bold px-2 underline"
                                    htmlFor="textarea">Remarks</label>
