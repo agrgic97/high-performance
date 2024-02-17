@@ -46,8 +46,16 @@ const getSalesmanById = async (id) => {
     return await salesmanRepository.findSalesmanById(id)
 }
 
+const getAllBonusComputationsBySalesmanId = async (sid) => {
+    return await salesmanRepository.findAllBonusComputationsBySalesmanId(sid)
+}
+
 const createSalesman = async (salesman) => {
     return await salesmanRepository.createSalesman(salesman)
+}
+
+const createBonusComputation = async (record) => {
+    return await salesmanRepository.createBonusComputation(record)
 }
 
 const updateSalesman = async (id, salesman) => {
@@ -71,12 +79,14 @@ module.exports = {
     getAllSalesmenFromHRM,
     getAllAccountsFromCRX,
     getAllEmployeesFromHRM,
+    getAllBonusComputationsBySalesmanId,
     getSalesmanById,
     getSalesmanFromHRMById,
     getAccountFromCRXById,
     getAccountFromCRXByFullName,
     getAccountIdFromSalesmanId,
     createSalesman,
+    createBonusComputation,
     updateSalesman,
     updateBonusSalary,
     deleteSalesman,

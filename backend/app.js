@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require("cors");
 const mongoose = require("mongoose");
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
 require('dotenv').config();
 
 const app = express();
@@ -30,6 +32,27 @@ const recordRouter = require("./routes/record-router")
 const orangeHRMRouter = require("./routes/orange-hrm-router")
 const openCRXRouter = require("./routes/open-crx-router")
 const authRouter = require("./routes/auth-router")
+
+const swaggerOptions = {
+    definition: {
+        openapi: "3.1.0",
+        info: {
+            title: "High Performance API",
+            version: "1.0.0",
+            description: "Documentation of Backend API for High Performance Project"
+        },
+        servers: [
+            {
+                url: "http://localhost:3000/api"
+            }
+        ]
+    },
+    apis: ["./routes/*.js"]
+}
+
+const specs = swaggerJsDoc(swaggerOptions)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.use('/api/salesman', salesmanRouter)
 app.use('/api/record', recordRouter)

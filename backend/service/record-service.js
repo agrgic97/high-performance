@@ -11,10 +11,6 @@ const getAllSocialPerformanceRecords = async () => {
     return await recordRepository.findAllSocialPerformanceEvaluations()
 }
 
-const getAllBonusComputationsBySalesmanId = async (sid) => {
-    return await recordRepository.findAllBonusComputationsBySalesmanId(sid)
-}
-
 const getSocialPerformanceRecordById = async (id) => {
     return await recordRepository.findSocialPerformanceEvaluationById(id)
 }
@@ -89,10 +85,6 @@ const createRecordInformation = async (record) => {
     return await recordRepository.createRecordInformation(record)
 }
 
-const createBonusComputation = async (record) => {
-    return await recordRepository.createBonusComputation(record)
-}
-
 const updateRecordInformation = async (id, record) => {
     return await recordRepository.updateRecordInformation(id, record)
 }
@@ -111,7 +103,6 @@ const checkIfRecordInformationExistsForYear = async (sid, year) => {
 
 module.exports = {
     getAllSocialPerformanceRecords,
-    getAllBonusComputationsBySalesmanId,
     getSocialPerformanceRecordById,
     getSocialPerformanceRecordBySalesmanIdAndYear,
     getSocialPerformanceRecordYearsBySalesmanId,
@@ -119,7 +110,6 @@ module.exports = {
     getOrdersEvaluationsBySalesmanId,
     createRecordInformation,
     createSocialPerformanceRecord,
-    createBonusComputation,
     updateRecordInformation,
     updateSocialPerformanceEvaluation,
     checkIfSocialPerformanceRecordExistsForYear,
