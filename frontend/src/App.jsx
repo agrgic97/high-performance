@@ -5,7 +5,6 @@ import {createContext, useEffect, useState} from "react";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import Header from "./components/Header.jsx";
-import EditPerformanceRecord from "./components/EditPerformanceRecord.jsx";
 import BonusSalaries from "./components/BonusSalaries.jsx";
 
 export const AuthContext = createContext(null);
@@ -38,14 +37,6 @@ function App() {
                             element={
                                 <ProtectedRoute isAuthenticated={isAuthenticated}>
                                     <Dashboard/>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/edit"
-                            element={
-                                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                                    <EditPerformanceRecord/>
                                 </ProtectedRoute>
                             }
                         />

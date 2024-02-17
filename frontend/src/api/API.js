@@ -16,7 +16,7 @@ class Api {
     }
 
     getBonusComputationsFromSalesman = (id) => {
-        return axios.get(`${this.backendUrl}/api/record/bonus-computation/${id}`);
+        return axios.get(`${this.backendUrl}/api/salesman/${id}/bonus-computation`);
     }
 
     login = (requestBody) => {

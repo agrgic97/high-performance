@@ -11,14 +11,7 @@ const Navbar = () => {
                     <NavLink to="/dashboard"
                              className={({isActive}) => {return `text-white hover:text-blue-600 transition duration-300 ease-in-out ${isActive ? "font-bold" : ""}`}}
                              >Records</NavLink>
-                    {user.role === "HR" && <NavLink to="/edit"
-                              className="text-white hover:text-blue-600 transition duration-300 ease-in-out"
-                              style={({isActive}) => {
-                                  return {
-                                      fontWeight: isActive ? "bold" : ""
-                                  }
-                              }}>Edit Records</NavLink>}
-                    {user.role === "CEO" && <NavLink to="/bonus-salaries"
+                    {(user.role === "CEO" || user.role === "HR") && <NavLink to="/bonus-salaries"
                               className="text-white hover:text-blue-600 transition duration-300 ease-in-out"
                               style={({isActive}) => {
                                   return {
