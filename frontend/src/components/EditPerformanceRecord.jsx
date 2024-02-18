@@ -20,7 +20,7 @@ const EditPerformanceRecord = ({socialPerformanceEvaluation, setEditMode, fetchP
 
     return (
         <div className="bg-gray-100 p-2 rounded shadow border-b border-gray-200">
-            {socialPerformanceEvaluation.socialPerformanceEvaluations.map(evaluation =>
+            {socialPerformanceEvaluation?.socialPerformanceEvaluations?.map(evaluation =>
                 (<div key={evaluation["_id"]}>
                     <label htmlFor="description" className="block mb-4">
                         <span className="text-gray-700">Description</span>

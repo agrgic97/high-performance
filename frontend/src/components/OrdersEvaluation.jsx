@@ -9,7 +9,7 @@ const OrdersEvaluation = ({ year, salesmanId, setOrdersBonus }) => {
 
 
     useEffect(() => {
-        backendApi.getOrdersEvaluationRecordsByFromSalesman(salesmanId)
+        backendApi.getOrdersEvaluationRecordsByFromSalesman(salesmanId, year)
             .then(res => {
                 const data = res?.data
                 setOrdersEvaluations(data)

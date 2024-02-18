@@ -12,7 +12,7 @@ class Api {
     }
 
     getAvailableRecordYearsFromSalesman = (id) => {
-        return axios.get(`${this.backendUrl}/api/record/performance-evaluation/years/salesman/${id}`);
+        return axios.get(`${this.backendUrl}/api/record/years/salesman/${id}`);
     }
 
     getBonusComputationsFromSalesman = (id) => {
@@ -23,8 +23,8 @@ class Api {
         return axios.post(`${this.backendUrl}/api/auth/login`, requestBody);
     }
 
-    getOrdersEvaluationRecordsByFromSalesman = (id) => {
-        return axios.get(`${this.backendUrl}/api/record/orders-evaluation/${id}`);
+    getOrdersEvaluationRecordsByFromSalesman = (id, year) => {
+        return axios.get(`${this.backendUrl}/api/record/orders-evaluation/salesman/${id}/year/${year}`);
     }
 
     getSocialPerformanceEvaluationRecordsByYearFromSalesman = (id, year) => {

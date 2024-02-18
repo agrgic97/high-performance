@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from "react";
 import API from "../api/API.js";
-import LoadingSpinner from "./LoadingSpinner.jsx";
 import {AuthContext} from "../App.jsx";
 import EditPerformanceRecord from "./EditPerformanceRecord.jsx";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus, hrSigned }) => {
     const [socialPerformanceEvaluation, setSocialPerformanceEvaluation] = useState(null);
@@ -24,7 +24,14 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus, hr
                 setTotalBonus(bonus)
                 setPerformanceBonus(bonus)
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                setSocialPerformanceEvaluation({
+                    salesmanId: salesmanId,
+                    year: year,
+                    socialPerformanceEvaluations: []
+                })
+                console.error(error)
+            })
     }
 
     const calculateSumOfBoni = (data) => {
@@ -33,12 +40,12 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus, hr
         }, 0)
     }
 
-    if (socialPerformanceEvaluation && year) {
+    if (socialPerformanceEvaluation?.socialPerformanceEvaluations && year) {
         return (
             <div className="mt-10 mb-5">
                 <div className="flex justify-between items-center">
                     <h1 className="font-bold text-2xl py-1 px-2 my-3 underline">Social Performance Evaluation</h1>
-                    {user.role === "HR" && !editMode && !hrSigned &&
+                    {user.role === "HR" && !editMode && !hrSigned && socialPerformanceEvaluation.socialPerformanceEvaluations.length > 0 &&
                         <div>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
                                     onClick={() => setEditMode(true)}>
@@ -79,7 +86,7 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus, hr
                                     </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
-                                    {socialPerformanceEvaluation.socialPerformanceEvaluations.map((evaluation) => (
+                                    {socialPerformanceEvaluation?.socialPerformanceEvaluations?.map((evaluation) => (
                                         <tr key={evaluation["_id"]}>
                                             <td className="px-6 py-4 whitespace-nowrap">{evaluation["description"]}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">{evaluation["targetValue"]}</td>
@@ -93,9 +100,10 @@ const SocialPerformanceEvaluation = ({ year, salesmanId, setPerformanceBonus, hr
                         </div>
                     </div>
                 </div>}
-                {editMode && <EditPerformanceRecord socialPerformanceEvaluation={socialPerformanceEvaluation}
-                                                    setEditMode={setEditMode}
-                                                    fetchPerformanceEvaluation={fetchPerformanceEvaluation}/>}
+                {editMode &&
+                    <EditPerformanceRecord socialPerformanceEvaluation={socialPerformanceEvaluation}
+                                           setEditMode={setEditMode}
+                                           fetchPerformanceEvaluation={fetchPerformanceEvaluation}/>}
                 <div className="mt-4 py-2 px-3 bg-gray-50 rounded inline-block font-medium shadow">
                     Total Bonus (Social Performance Evaluation): {totalBonus}
                 </div>
