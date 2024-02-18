@@ -24,9 +24,9 @@ const getRecordInformationBySalesmanIdAndYear = async (req, res) => {
     }
 }
 
-const getPerformanceEvaluationRecordYearsBySalesmanId = async (req, res) => {
+const getRecordYearsBySalesmanId = async (req, res) => {
     try {
-        res.status(200).json(await recordService.getSocialPerformanceRecordYearsBySalesmanId(req.params.id))
+        res.status(200).json(await recordService.getRecordYearsBySalesmanId(req.params.id))
     } catch (error) {
         res.status(500).send(error)
     }
@@ -34,7 +34,7 @@ const getPerformanceEvaluationRecordYearsBySalesmanId = async (req, res) => {
 
 const getOrdersEvaluationRecordsBySalesmanId = async (req, res) => {
     try {
-        res.status(200).json(await recordService.getOrdersEvaluationsBySalesmanId(req.params.id))
+        res.status(200).json(await recordService.getOrdersEvaluationsBySalesmanId(req.params.id, req.params.year))
     } catch (error) {
         res.status(500).send(error)
     }
@@ -99,7 +99,7 @@ module.exports = {
     getAllPerformanceEvaluationRecords,
     getPerformanceEvaluationRecordById,
     getPerformanceEvaluationRecordBySalesmanIdAndYear,
-    getPerformanceEvaluationRecordYearsBySalesmanId,
+    getRecordYearsBySalesmanId,
     getRecordInformationBySalesmanIdAndYear,
     getOrdersEvaluationRecordsBySalesmanId,
     createSocialPerformanceRecord,

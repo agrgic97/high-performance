@@ -33,19 +33,29 @@ const getRecordInformationBySalesmanIdAndYear = async (sid, year) => {
     return await recordRepository.findRecordInformationByYearAndSalesmanId(sid, year)
 }
 
-const getSocialPerformanceRecordYearsBySalesmanId = async (sid) => {
-    const records = await recordRepository.findAllSocialPerformanceEvaluationsBySalesmanId(sid)
-    return records.map(record => record["year"])
+const getRecordYearsBySalesmanId = async (sid) => {
+    let years = new Set()
+    const account = await salesmanService.getAccountIdFromSalesmanId(sid)
+    const accountId = extractAccountIdFromUrl(account["@href"])
+    const performanceRecords = await recordRepository.findAllSocialPerformanceEvaluationsBySalesmanId(sid)
+    const ordersRecords = await ordersService.getAllSalesOrdersByAccountId(accountId)
+    for (const performanceRecord of performanceRecords) {
+        years.add(performanceRecord["year"])
+    }
+    for (const ordersRecord of ordersRecords) {
+        years.add(parseInt(ordersRecord["activeOn"]?.substring(0,4)))
+    }
+    return Array.from(years).sort()
 }
 
-const getOrdersEvaluationsBySalesmanId = async (sid) => {
+const getOrdersEvaluationsBySalesmanId = async (sid, year) => {
     let orderEvaluations = []
 
     const account = await salesmanService.getAccountIdFromSalesmanId(sid)
     if (account === undefined) return orderEvaluations
 
     const accountId = extractAccountIdFromUrl(account["@href"])
-    const salesOrders = await ordersService.getAllSalesOrdersByAccountId(accountId)
+    const salesOrders = await ordersService.getAllSalesOrdersByAccountIdAndYear(accountId, year)
 
     for (const salesOrder of salesOrders) {
         const salesOrderId = patternHelper.extractSalesOrderIdFromUrl(salesOrder["@href"])
@@ -105,7 +115,7 @@ module.exports = {
     getAllSocialPerformanceRecords,
     getSocialPerformanceRecordById,
     getSocialPerformanceRecordBySalesmanIdAndYear,
-    getSocialPerformanceRecordYearsBySalesmanId,
+    getRecordYearsBySalesmanId,
     getRecordInformationBySalesmanIdAndYear,
     getOrdersEvaluationsBySalesmanId,
     createRecordInformation,

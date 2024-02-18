@@ -202,13 +202,13 @@ router.get("/performance-evaluation/salesman/:id/year/:year", recordController.g
  *        description: Server error
  *
  */
-router.get("/performance-evaluation/years/salesman/:id", recordController.getPerformanceEvaluationRecordYearsBySalesmanId)
+router.get("/years/salesman/:id", recordController.getRecordYearsBySalesmanId)
 
 /**
  * @swagger
- * /record/orders-evaluation/{id}:
+ * /record/orders-evaluation/salesman/{id}/year/{year}:
  *  get:
- *    summary: Returns list of orders evaluation records by salesman id
+ *    summary: Returns list of orders evaluation records by salesman id and year
  *    tags: [Records]
  *    parameters:
  *      - in: path
@@ -217,9 +217,15 @@ router.get("/performance-evaluation/years/salesman/:id", recordController.getPer
  *          type: string
  *        required: true
  *        description: The salesman id
+ *      - in: path
+ *        name: year
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Record year
  *    responses:
  *      200:
- *        description: The list of orders evaluation records by salesman
+ *        description: The list of orders evaluation records by salesman and year
  *        content:
  *          application/json:
  *            schema:
@@ -230,7 +236,7 @@ router.get("/performance-evaluation/years/salesman/:id", recordController.getPer
  *        description: Server error
  *
  */
-router.get("/orders-evaluation/:id", recordController.getOrdersEvaluationRecordsBySalesmanId)
+router.get("/orders-evaluation/salesman/:id/year/:year", recordController.getOrdersEvaluationRecordsBySalesmanId)
 
 /**
  * @swagger
