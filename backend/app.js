@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/HighPerformance').then(() => console.log("Connected to HighPerformance"));
+mongoose.connect(`mongodb://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@${process.env.MONGO_DB_HOST}:${process.env.MONGO_DB_PORT}/${process.env.MONGO_DB_DATA_BASE}?authSource=${process.env.MONGO_DB_AUTH}`).then(() => console.log("Connected to HighPerformance"));
 
 const db = mongoose.connection;
 
